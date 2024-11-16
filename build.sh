@@ -1,13 +1,23 @@
 #!/usr/bin/bash
 
-if [ -f w3.css ]; then
+CSS_FILE="w3.css"
+CSS_URL="https://www.w3schools.com/w3css/4/w3.css"
 
-echo "w3.css ya esta descargado"
+mkdir -p web
 
+if [ -f ./web/"$CSS_FILE" ]; then
+echo "Carpeta recien creada"
 else
+curl -o "$CSS_FILE" "$CSS_URL"
 
-wget https://www.w3schools.com/w3css/4/w3.css
-
+if [ $? -eq 0 ]; then
+echo "$CSS_FILE se ha descargado"
+mv "$CSS_FILE" ./web
+else
+echo "ERROR en la descarga de $CSS_FILE"
+fi
 fi
 
 ./buildJenkins.sh
+
+echo "Páginas creadas"
