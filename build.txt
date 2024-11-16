@@ -1,0 +1,19 @@
+#!/usr/bin/bash
+
+CSS_FILE="we.css"
+CSS_URL="https://www.w3schools.com/w3css/4/w3.css"
+
+mkdir -p Web1
+
+if [ -f "$CSS_FILE" ]; then
+echo "carpeta descargada"
+else
+curl -o "$CSS_FILE" "$CSS_URL"
+
+if [ $? -eq 0 ]; then
+echo "$CSS_FILE se ha descargado"
+cp "$CSS_FILE" ./Web1
+else
+echo "ERROR en la descarga $CSS_FILE"
+fi
+fi
